@@ -13,7 +13,7 @@ const CONFIG = {
   addressLines: ['Манас проспекти, 12', 'Бишкек шаары'],
   mapUrl: 'https://2gis.kg/bishkek',
 
-  audioSrc: 'audio/wedding-song.m4a',   // положите свой файл сюда; пустая строка — кнопка не появится
+  audioSrc: 'audio/wedding-song.mp3',   // положите свой файл сюда; пустая строка — кнопка не появится
 
   // URL веб-приложения Google Apps Script (см. README, шаг 4)
   rsvpUrl: '',
@@ -171,23 +171,58 @@ function initMusic() {
 
   audio.src = CONFIG.audioSrc;
   audio.volume = 0.5;
-  audio.addEventListener('error', () => { btn.hidden = true; });
   btn.hidden = false;
+
+  // файл не найден или формат не поддерживается — прячем кнопку
+  audio.addEventListener('error', () => { btn.hidden = true; });
+
+  let stoppedByUser = false;
+
+  function markOn() {
+    btn.setAttribute('aria-pressed', 'true');
+    label.textContent = TEXT.musicOff;
+  }
+
+  function markOff() {
+    btn.setAttribute('aria-pressed', 'false');
+    label.textContent = TEXT.musicOn;
+  }
 
   btn.addEventListener('click', () => {
     if (audio.paused) {
-      audio.play().then(() => {
-        btn.setAttribute('aria-pressed', 'true');
-        label.textContent = TEXT.musicOff;
-      }).catch(() => {
-        btn.hidden = true;
-      });
+      stoppedByUser = false;
+      audio.play().then(markOn).catch(() => { btn.hidden = true; });
     } else {
+      stoppedByUser = true;
       audio.pause();
-      btn.setAttribute('aria-pressed', 'false');
-      label.textContent = TEXT.musicOn;
+      markOff();
     }
   });
+
+  // плеер могли остановить кнопками гарнитуры или из шторки — подхватываем
+  audio.addEventListener('play', markOn);
+  audio.addEventListener('pause', markOff);
+
+  // Автозапуск браузеры блокируют, но после первого касания экрана он разрешён.
+  // Ловим самый ранний жест гостя и включаем музыку — кнопка остаётся для управления.
+  const events = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
+
+  function tryAutoplay() {
+    if (stoppedByUser || !audio.paused) return;
+    audio.play().then(markOn).catch(() => {});
+  }
+
+  function onFirstGesture(e) {
+    events.forEach(type => window.removeEventListener(type, onFirstGesture));
+    // нажатие на саму кнопку обрабатывает её собственный click — иначе включим и сразу выключим
+    const t = e && e.target;
+    if (t && t.closest && t.closest('#musicBtn')) return;
+    tryAutoplay();
+  }
+
+  events.forEach(type =>
+    window.addEventListener(type, onFirstGesture, { once: true, passive: true })
+  );
 }
 
 /* ---------- проявление фото (blur-up) ---------- */

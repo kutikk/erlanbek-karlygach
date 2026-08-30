@@ -37,7 +37,7 @@ main { position: relative; z-index: 1; }
 .wrap {
   max-width: 580px;
   margin: 0 auto;
-  padding: 0 var(--pad) 64px;
+  padding: 0 var(--pad) 32px;
 }
 
 /* индикатор прокрутки */
@@ -204,7 +204,7 @@ main { position: relative; z-index: 1; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 90px var(--pad) 76px;
+  padding: 72px var(--pad) 60px;
   overflow: hidden;
 }
 
@@ -346,11 +346,11 @@ main { position: relative; z-index: 1; }
 
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-.section { padding: 42px 0; }
+.section { padding: 24px 0; }
 
 .card {
   position: relative;
-  padding: 32px 22px;
+  padding: 26px 20px;
   border: 1px solid var(--edge-gold);
   border-radius: 6px;
   background: var(--glass);
@@ -399,7 +399,7 @@ main { position: relative; z-index: 1; }
 }
 
 .text--sm { font-size: 13px; margin-top: 8px; }
-.text--center { margin: 26px auto 0; text-align: center; }
+.text--center { margin: 16px auto 0; text-align: center; }
 
 /* ==========================================================================
    ОБРАЩЕНИЕ: фото + текст
@@ -407,7 +407,7 @@ main { position: relative; z-index: 1; }
 
 .split {
   display: grid;
-  gap: 26px;
+  gap: 18px;
   align-items: center;
 }
 
@@ -415,7 +415,7 @@ main { position: relative; z-index: 1; }
 .split .title { margin-bottom: 14px; }
 
 @media (min-width: 560px) {
-  .split { grid-template-columns: 0.85fr 1fr; gap: 30px; }
+  .split { grid-template-columns: 0.8fr 1fr; gap: 20px; }
 }
 
 /* ==========================================================================
@@ -425,23 +425,11 @@ main { position: relative; z-index: 1; }
 .duo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 8px;
+  margin-top: 14px;
 }
 
 .duo__item { min-width: 0; }
-
-.duo__item--up { transform: translateY(-14px); }
-.duo__item--down { transform: translateY(20px); }
-
-.duo--tight .duo__item--up,
-.duo--tight .duo__item--down { transform: none; }
-
-@media (min-width: 480px) {
-  .duo { gap: 16px; }
-  .duo__item--up { transform: translateY(-24px); }
-  .duo__item--down { transform: translateY(34px); }
-}
 
 /* ==========================================================================
    ПАНОРАМА
@@ -449,7 +437,7 @@ main { position: relative; z-index: 1; }
 
 .pano {
   position: relative;
-  margin: 30px 0 56px;
+  margin: 14px 0 24px;
   overflow: hidden;
 }
 
@@ -507,7 +495,7 @@ main { position: relative; z-index: 1; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .count__cell {
@@ -551,7 +539,7 @@ main { position: relative; z-index: 1; }
 }
 
 .count__done {
-  margin: 20px 0 0;
+  margin: 16px 0 0;
   font-family: var(--display);
   font-weight: 300;
   font-size: 22px;
@@ -616,7 +604,7 @@ main { position: relative; z-index: 1; }
 }
 
 .cal__line {
-  margin: 20px 0 0;
+  margin: 16px 0 0;
   font-family: var(--display);
   font-weight: 300;
   font-size: 15px;
@@ -626,7 +614,7 @@ main { position: relative; z-index: 1; }
 /* address */
 
 .addr {
-  margin: 16px 0 22px;
+  margin: 14px 0 18px;
   font-family: var(--display);
   font-weight: 300;
   font-size: 17px;
@@ -674,7 +662,7 @@ main { position: relative; z-index: 1; }
 .btn--solid[disabled] { opacity: 0.5; cursor: default; transform: none; }
 
 .form {
-  margin-top: 24px;
+  margin-top: 20px;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -844,7 +832,7 @@ main { position: relative; z-index: 1; }
    ФУТЕР
    ========================================================================== */
 
-.footer { text-align: center; padding: 30px 0 10px; }
+.footer { text-align: center; padding: 20px 0 6px; }
 
 .footer__label {
   margin: 0 0 10px;
@@ -985,14 +973,6 @@ main { position: relative; z-index: 1; }
 
 [data-anim="up"].is-in,
 [data-anim="scale"].is-in { transform: none; }
-
-.duo__item--up[data-anim].is-in { transform: translateY(-14px); }
-.duo__item--down[data-anim].is-in { transform: translateY(20px); }
-
-@media (min-width: 480px) {
-  .duo__item--up[data-anim].is-in { transform: translateY(-24px); }
-  .duo__item--down[data-anim].is-in { transform: translateY(34px); }
-}
 
 [data-anim="mask"].is-in .ph { transform: none; }
 
