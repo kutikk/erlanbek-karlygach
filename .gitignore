@@ -1,0 +1,9 @@
+# оригиналы фото (18 МБ) — на сайте используются сжатые из img/
+photos/
+
+# мусор
+Untitled-1.ipynb
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/

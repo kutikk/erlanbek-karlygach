@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Үйлөнүү тойго чакыруу</title>
+<meta name="description" content="Үйлөнүү тойго чакыруу">
+<meta name="theme-color" content="#FBF8F2">
+<meta property="og:title" content="Үйлөнүү тойго чакыруу">
+<meta property="og:description" content="Биздин той күнүн биз менен бөлүшүңүз">
+<meta property="og:image" content="img/bench.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/bench.jpg">
+<link rel="stylesheet" href="img/lqip.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+
+<div class="aurora" aria-hidden="true">
+  <span class="aurora__blob aurora__blob--violet"></span>
+  <span class="aurora__blob aurora__blob--magenta"></span>
+  <span class="aurora__blob aurora__blob--amber"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<button class="music" id="musicBtn" type="button" aria-pressed="false" hidden>
+  <span class="music__wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="music__label" id="musicLabel">Музыканы кошуу</span>
+</button>
+
+<audio id="audio" loop preload="none"></audio>
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
+    <div class="hero__media">
+      <div class="ph ph--bench hero__ph">
+        <img src="img/bench.jpg" alt="" fetchpriority="high" decoding="async">
+      </div>
+      <div class="hero__veil" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero__inner">
+      <p class="eyebrow" data-anim="up"><span class="dot" aria-hidden="true"></span>Үйлөнүү тойго чакыруу</p>
+
+      <div class="tunduk" data-anim="scale" data-delay="80" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="gradRing" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#A87B22"/>
+              <stop offset="55%" stop-color="#E3C578"/>
+              <stop offset="100%" stop-color="#8C6A1E"/>
+            </linearGradient>
+            <radialGradient id="gradCore" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#E3C578" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#E3C578" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <circle class="tunduk__ticks" cx="100" cy="100" r="94"
+                  fill="none" stroke="#B8912F" stroke-opacity="0.5"
+                  stroke-width="2" stroke-dasharray="1 8" stroke-linecap="round"/>
+
+          <g class="tunduk__mid">
+            <circle cx="100" cy="100" r="76" fill="none" stroke="url(#gradRing)" stroke-width="1.4"/>
+            <circle cx="100" cy="100" r="58" fill="none" stroke="#B8912F" stroke-opacity="0.22" stroke-width="1"/>
+            <g stroke="url(#gradRing)" stroke-width="1.2" stroke-linecap="round">
+              <path d="M100 24 V76"/>
+              <path d="M100 124 V176"/>
+              <path d="M24 100 H76"/>
+              <path d="M124 100 H176"/>
+              <path d="M46 46 L70 70"/>
+              <path d="M130 130 L154 154"/>
+              <path d="M154 46 L130 70"/>
+              <path d="M70 130 L46 154"/>
+            </g>
+          </g>
+
+          <circle cx="100" cy="100" r="46" fill="url(#gradCore)"/>
+
+          <g class="tunduk__core" fill="none" stroke="#8C6A1E" stroke-opacity="0.9"
+             stroke-width="1.3" stroke-linecap="round">
+            <path d="M100 74 C112 74 118 84 112 92 C107 98 98 96 99 88"/>
+            <path d="M126 100 C126 112 116 118 108 112 C102 107 104 98 112 99"/>
+            <path d="M100 126 C88 126 82 116 88 108 C93 102 102 104 101 112"/>
+            <path d="M74 100 C74 88 84 82 92 88 C98 93 96 102 88 101"/>
+          </g>
+        </svg>
+      </div>
+
+      <h1 class="names">
+        <span class="names__one" id="groomName" data-anim="up" data-delay="160">Эрланбек</span>
+        <span class="names__amp" data-anim="scale" data-delay="240" aria-hidden="true">&amp;</span>
+        <span class="names__one" id="brideName" data-anim="up" data-delay="320">Карлыгач</span>
+      </h1>
+
+      <p class="hero__date" id="heroDate" data-anim="up" data-delay="420"></p>
+      <span class="hero__cue" aria-hidden="true"></span>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- ======================= ОБРАЩЕНИЕ ======================= -->
+    <section class="section split">
+      <div class="split__media" data-anim="mask">
+        <div class="ph ph--hands" data-full="img/hands.jpg" data-cap="Биздин баштоо" tabindex="0" role="button" aria-label="Сүрөттү чоңойтуу">
+          <img src="img/hands.jpg" alt="Колдорун кармашкан жаштар" loading="lazy" decoding="async" data-par="0.06">
+        </div>
+      </div>
+      <div class="split__body">
+        <h2 class="title" data-anim="up">Урматтуу туугандар<br>жана достор</h2>
+        <p class="text" data-anim="up" data-delay="90">
+          Жашообуздагы эң кымбат күндү сиздер менен бөлүшүүнү каалайбыз.
+          Бул кубанычты жакын адамдарыбыздын арасында тосуу биз үчүн өзгөчө маанилүү.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================= ГАЛЕРЕЯ ======================= -->
+    <section class="section">
+      <p class="eyebrow eyebrow--center" data-anim="up"><span class="dot" aria-hidden="true"></span>Биздин күндөр</p>
+      <div class="duo">
+        <div class="duo__item duo__item--up" data-anim="mask">
+          <div class="ph ph--bench-bw" data-full="img/bench-bw.jpg" data-cap="Экөөбүз" tabindex="0" role="button" aria-label="Сүрөттү чоңойтуу">
+            <img src="img/bench-bw.jpg" alt="Жаштар отургучта" loading="lazy" decoding="async" data-par="0.08">
+          </div>
+        </div>
+        <div class="duo__item duo__item--down" data-anim="mask" data-delay="140">
+          <div class="ph ph--field" data-full="img/field.jpg" data-cap="Тоо жакта" tabindex="0" role="button" aria-label="Сүрөттү чоңойтуу">
+            <img src="img/field.jpg" alt="Жаштар талаада" loading="lazy" decoding="async" data-par="0.10">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ======================= ПАНОРАМА ======================= -->
+  <section class="pano">
+    <div class="ph ph--boat pano__ph" data-full="img/boat.jpg" data-cap="Көлдө" tabindex="0" role="button" aria-label="Сүрөттү чоңойтуу">
+      <img src="img/boat.jpg" alt="Жаштар кайыкта" loading="lazy" decoding="async" data-par="0.09">
+    </div>
+    <div class="pano__veil" aria-hidden="true"></div>
+    <blockquote class="pano__quote" data-anim="up">
+      <p>Бир жүрөк, бир жол, бир өмүр</p>
+    </blockquote>
+  </section>
+
+  <div class="wrap">
+
+    <!-- ======================= ТРАДИЦИЯ ======================= -->
+    <section class="section">
+      <p class="eyebrow eyebrow--center" data-anim="up"><span class="dot" aria-hidden="true"></span>Салт менен</p>
+      <div class="duo duo--tight">
+        <div class="duo__item" data-anim="mask">
+          <div class="ph ph--kalpak" data-full="img/kalpak.jpg" data-cap="Улуттук кийимде" tabindex="0" role="button" aria-label="Сүрөттү чоңойтуу">
+            <img src="img/kalpak.jpg" alt="Улуттук кийимдеги жаштар" loading="lazy" decoding="async" data-par="0.07">
+          </div>
+        </div>
+        <div class="duo__item" data-anim="mask" data-delay="140">
+          <div class="ph ph--mountains" data-full="img/mountains.jpg" data-cap="Ала-Тоодо" tabindex="0" role="button" aria-label="Сүрөттү чоңойтуу">
+            <img src="img/mountains.jpg" alt="Улуттук кийимдеги жаштар тоодо" loading="lazy" decoding="async" data-par="0.10">
+          </div>
+        </div>
+      </div>
+      <p class="text text--center" data-anim="up" data-delay="120">
+        Ата-бабабыздын салтын урматтап, жаңы үй-бүлөнү сиздердин батаңыз менен курабыз.
+      </p>
+    </section>
+
+    <!-- ======================= ОТСЧЁТ ======================= -->
+    <section class="section">
+      <p class="eyebrow eyebrow--center" data-anim="up"><span class="dot" aria-hidden="true"></span>Той башталганга чейин</p>
+      <div class="count" id="count">
+        <div class="count__cell" data-anim="up"><span class="count__num" id="cdDays">0</span><span class="count__unit">Күн</span></div>
+        <div class="count__cell" data-anim="up" data-delay="80"><span class="count__num" id="cdHours">0</span><span class="count__unit">Саат</span></div>
+        <div class="count__cell" data-anim="up" data-delay="160"><span class="count__num" id="cdMin">0</span><span class="count__unit">Мүнөт</span></div>
+        <div class="count__cell" data-anim="up" data-delay="240"><span class="count__num" id="cdSec">0</span><span class="count__unit">Секунд</span></div>
+      </div>
+      <p class="count__done" id="countDone" hidden>Той башталды</p>
+    </section>
+
+    <!-- ======================= КАЛЕНДАРЬ ======================= -->
+    <section class="section" data-anim="up">
+      <div class="card card--hud">
+        <p class="cal__month" id="calMonth"></p>
+        <div class="cal" id="cal" role="img" aria-label="Той күнү календарда"></div>
+        <p class="cal__line" id="calLine"></p>
+      </div>
+    </section>
+
+    <!-- ======================= АДРЕС ======================= -->
+    <section class="section" data-anim="up">
+      <div class="card card--hud">
+        <p class="eyebrow eyebrow--center"><span class="dot" aria-hidden="true"></span>Дареги</p>
+        <p class="addr" id="addr"></p>
+        <a class="btn btn--ghost" id="mapLink" href="#" target="_blank" rel="noopener">Картадан кароо</a>
+      </div>
+    </section>
+
+    <!-- ======================= RSVP ======================= -->
+    <section class="section" id="rsvp" data-anim="up">
+      <div class="card">
+        <h2 class="title">Катышууңузду ырастаңыз</h2>
+        <p class="text text--sm">Жообуңузду тойго чейин жөнөтүп коюңуз.</p>
+
+        <form class="form" id="form" novalidate>
+          <label class="field">
+            <span class="field__label">Аты-жөнүңүз</span>
+            <input class="field__input" type="text" id="name" name="name" autocomplete="name" maxlength="80" required>
+          </label>
+
+          <fieldset class="field">
+            <legend class="field__label">Тойго келе аласызбы?</legend>
+            <div class="choice" id="attending">
+              <button class="choice__btn" type="button" data-value="yes" aria-pressed="false">Ооба, сөзсүз барам</button>
+              <button class="choice__btn" type="button" data-value="no" aria-pressed="false">Тилекке каршы, бара албайм</button>
+            </div>
+          </fieldset>
+
+          <div class="field" id="guestsField" hidden>
+            <span class="field__label">Канча киши болосуздар?</span>
+            <div class="stepper">
+              <button class="stepper__btn" type="button" id="minus" aria-label="Азайтуу">−</button>
+              <span class="stepper__val" id="guests" aria-live="polite">1</span>
+              <button class="stepper__btn" type="button" id="plus" aria-label="Көбөйтүү">+</button>
+            </div>
+          </div>
+
+          <fieldset class="field" id="sideField" hidden>
+            <legend class="field__label">Кимдин конугусуз?</legend>
+            <div class="choice" id="side">
+              <button class="choice__btn" type="button" data-value="groom" aria-pressed="false">Эрланбек</button>
+              <button class="choice__btn" type="button" data-value="bride" aria-pressed="false">Карлыгач</button>
+            </div>
+          </fieldset>
+
+          <p class="form__msg" id="msg" role="status" aria-live="polite"></p>
+          <button class="btn btn--solid" type="submit" id="submit">Жооп жөнөтүү</button>
+        </form>
+
+        <div class="thanks" id="thanks" hidden>
+          <p class="thanks__text" id="thanksText"></p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" data-anim="up">
+      <p class="footer__label">Урматтоо менен</p>
+      <p class="footer__names" id="footerNames"></p>
+    </footer>
+
+  </div>
+
+</main>
+
+<!-- ======================= ЛАЙТБОКС ======================= -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Сүрөт" hidden>
+  <button class="lb__close" id="lbClose" type="button" aria-label="Жабуу">&times;</button>
+  <button class="lb__nav lb__nav--prev" id="lbPrev" type="button" aria-label="Мурунку">&#8249;</button>
+  <button class="lb__nav lb__nav--next" id="lbNext" type="button" aria-label="Кийинки">&#8250;</button>
+  <figure class="lb__figure">
+    <img class="lb__img" id="lbImg" alt="">
+    <figcaption class="lb__cap"><span id="lbCap"></span><span class="lb__count" id="lbCount"></span></figcaption>
+  </figure>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
