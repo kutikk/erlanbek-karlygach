@@ -1228,3 +1228,31 @@ body.is-sealed { overflow: hidden; }
 
 /* тюндюк в hero ложился на лица — оставляем его только вне первого экрана */
 .hero .tunduk { display: none; }
+
+/* ==========================================================================
+   ОБЛЕГЧЕНИЕ ДЛЯ СЛАБЫХ ТЕЛЕФОНОВ
+   Большие blur и backdrop-filter кладут GPU бюджетных Android.
+   ========================================================================== */
+
+/* размытая заглушка отработала — снимаем фильтр, чтобы не считался зря */
+.ph.is-loaded::after { filter: none; }
+
+@media (max-width: 600px) {
+  /* одно пятно вместо трёх, размытие вдвое слабее */
+  .aurora__blob--magenta,
+  .aurora__blob--amber { display: none; }
+
+  .aurora__blob--violet { filter: blur(46px); animation: none; }
+
+  /* зернистость поверх всего экрана — дорогое наложение */
+  .grain { display: none; }
+
+  .music,
+  .lb {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .music { background: rgba(64, 11, 22, 0.94); }
+  .lb { background: rgba(30, 5, 11, 0.97); }
+}
