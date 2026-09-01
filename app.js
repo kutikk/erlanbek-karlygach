@@ -10,8 +10,8 @@ const CONFIG = {
   date: { year: 2026, month: 9, day: 19, hour: 17, minute: 0 },
   utcOffset: '+06:00',            // Кыргызстан — постоянный UTC+6
 
-  addressLines: ['Манас проспекти, 12', 'Бишкек шаары'],
-  mapUrl: 'https://2gis.kg/bishkek',
+  addressLines: ['«Аяна» ресторану', 'Кулунду айылы'],
+  mapUrl: 'https://maps.app.goo.gl/f3nGcSwc5a7Rcfxj8',
 
   audioSrc: 'audio/wedding-song.mp3',   // положите свой файл сюда; пустая строка — кнопка не появится
 
