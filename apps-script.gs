@@ -29,6 +29,17 @@ function doPost(e) {
       return json({ ok: false, error: 'name_required' });
     }
 
+    // Сайт повторяет отправку, если не смог прочитать ответ. Метка rid у повтора
+    // та же — вторую строку не пишем.
+    const rid = String(data.rid == null ? '' : data.rid).trim().slice(0, 40);
+    if (rid) {
+      const cache = CacheService.getScriptCache();
+      if (cache.get(rid)) {
+        return json({ ok: true, duplicate: true });
+      }
+      cache.put(rid, '1', 21600);   // 6 часов — максимум для CacheService
+    }
+
     const attending = data.attending === true;
 
     let guests = parseInt(data.guests, 10);

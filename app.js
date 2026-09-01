@@ -396,7 +396,15 @@ function initLightbox() {
 
 /* ---------- форма ---------- */
 
-const state = { attending: null, side: null, guests: 1, sent: false };
+// rid — метка одной отправки. При повторе из-за обрыва связи она та же,
+// поэтому сервер запишет гостя один раз.
+const state = {
+  attending: null,
+  side: null,
+  guests: 1,
+  sent: false,
+  rid: Math.random().toString(36).slice(2) + Date.now().toString(36)
+};
 
 function bindChoice(groupId, onPick) {
   const group = $(groupId);
@@ -419,15 +427,31 @@ function setGuests(value) {
 }
 
 async function sendRsvp(payload) {
-  const res = await fetch(CONFIG.rsvpUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(payload),
-    redirect: 'follow'
-  });
-  if (!res.ok) throw new Error('HTTP ' + res.status);
-  const data = await res.json();
-  if (!data.ok) throw new Error(data.error || 'unknown');
+  const body = JSON.stringify(payload);
+
+  try {
+    const res = await fetch(CONFIG.rsvpUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: body,
+      redirect: 'follow'
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'unknown');
+    return;
+  } catch (err) {
+    // Некоторые мобильные браузеры не дают прочитать ответ Apps Script (CORS после
+    // редиректа). Повторяем вслепую: запись пройдёт, подтверждение не увидим.
+    // Повтор с тем же payload.rid — сервер отбросит дубль.
+    console.warn('повтор в режиме no-cors:', err);
+    await fetch(CONFIG.rsvpUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: body
+    });
+  }
 }
 
 function initForm() {
@@ -489,6 +513,7 @@ function initForm() {
 
     try {
       await sendRsvp({
+        rid: state.rid,
         name: name,
         attending: state.attending,
         guests: state.attending ? state.guests : 0,
