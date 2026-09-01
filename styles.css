@@ -383,13 +383,10 @@ body.is-sealed { overflow: hidden; }
 
 .hero__ph::before { display: none; }
 
-/* лёгкая расфокусировка: имена поверх читаются мягче.
-   scale в kenburns с запасом, поэтому размытые края за кадр не вылезают */
 .hero__ph img {
   top: 0;
   height: 100%;
   object-position: center 22%;
-  filter: blur(2px);
   animation: kenburns 34s ease-in-out infinite alternate;
 }
 
@@ -1064,8 +1061,15 @@ body.is-sealed { overflow: hidden; }
 }
 
 @media (max-width: 560px) {
-  .music { padding: 11px 12px; }
-  .music__label { display: none; }
+  .music {
+    top: 12px;
+    right: 12px;
+    padding: 9px 13px;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    max-width: calc(100vw - 24px);
+  }
+  .music__label { white-space: nowrap; }
 }
 
 /* ==========================================================================
@@ -1191,19 +1195,21 @@ body.is-sealed { overflow: hidden; }
    ПОЯВЛЕНИЕ ПРИ ПРОКРУТКЕ
    ========================================================================== */
 
+/* Без clip-path: Chrome на Android не отрабатывал inset() с отрицательными
+   значениями, и кадры оставались обрезанными в ноль — вместо фото пустота. */
 [data-anim] {
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), clip-path 1.1s var(--ease);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
 }
 
 [data-anim="up"] { opacity: 0; transform: translateY(28px); }
 [data-anim="scale"] { opacity: 0; transform: scale(0.88); }
-[data-anim="mask"] { clip-path: inset(0 0 100% 0); }
-[data-anim="mask"] .ph { transform: scale(1.14); }
+[data-anim="mask"] { opacity: 0; transform: translateY(22px); }
+[data-anim="mask"] .ph { transform: scale(1.06); }
 
 [data-anim].is-in { opacity: 1; }
-[data-anim="mask"].is-in { clip-path: inset(-44px -44px -44px -44px); }
 [data-anim="up"].is-in,
-[data-anim="scale"].is-in { transform: none; }
+[data-anim="scale"].is-in,
+[data-anim="mask"].is-in { transform: none; }
 [data-anim="mask"].is-in .ph { transform: none; }
 
 /* ==========================================================================
@@ -1222,7 +1228,7 @@ body.is-sealed { overflow: hidden; }
   [data-anim],
   [data-anim="up"],
   [data-anim="scale"],
-  [data-anim="mask"] { opacity: 1; transform: none; clip-path: none; }
+  [data-anim="mask"] { opacity: 1; transform: none; }
 
   [data-anim="mask"] .ph { transform: none; }
   .cal__day { opacity: 1; transform: none; }
