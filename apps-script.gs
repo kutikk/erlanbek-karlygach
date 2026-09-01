@@ -5,7 +5,7 @@
  * Установка: см. README.md, шаг 4.
  */
 
-const SHEET_ID = 'ВСТАВЬТЕ_ID_ТАБЛИЦЫ';
+const SHEET_ID = '1CGenJd6Asr9tMw-6bsuNkvL5ZfjxjNXaT5c4DHBQYhc';
 const SHEET_NAME = 'RSVP';
 const HEADERS = ['Убакыт', 'Аты-жөнү', 'Келеби', 'Канча киши', 'Кимдин конугу'];
 

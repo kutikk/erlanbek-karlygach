@@ -16,7 +16,7 @@ const CONFIG = {
   audioSrc: 'audio/wedding-song.mp3',   // положите свой файл сюда; пустая строка — кнопка не появится
 
   // URL веб-приложения Google Apps Script (см. README, шаг 4)
-  rsvpUrl: '',
+  rsvpUrl: 'https://script.google.com/macros/s/AKfycbzTcR-BoSdXlfsXId2vo0qKbmLWSl9LqXXddliXei8jiIPLQBzLKwEqTTopJm2z8WbL/exec',
 
   maxGuests: 10
 };
