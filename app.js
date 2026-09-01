@@ -85,6 +85,10 @@ function fillStatic() {
     sideBtns[0].textContent = CONFIG.groom;
     sideBtns[1].textContent = CONFIG.bride;
   }
+
+  // инициалы в вензеле на конверте
+  $('crestGroom').textContent = CONFIG.groom.charAt(0);
+  $('crestBride').textContent = CONFIG.bride.charAt(0);
 }
 
 /* ---------- обратный отсчёт ---------- */
@@ -160,6 +164,36 @@ function buildCalendar() {
   box.appendChild(frag);
 }
 
+/* ---------- конверт ---------- */
+
+// Заполняется в initMusic: конверт дёргает её при открытии.
+// Нажатие на печать — законный жест, после него браузер разрешает звук.
+let startMusic = () => {};
+
+function initEnvelope() {
+  const env = $('env');
+  const seal = $('sealBtn');
+  if (!env || !seal) return;
+
+  document.body.classList.add('is-sealed');
+
+  let opened = false;
+
+  function open() {
+    if (opened) return;
+    opened = true;
+
+    env.classList.add('is-open');
+    document.body.classList.remove('is-sealed');
+    startMusic();
+
+    const hide = () => { env.hidden = true; };
+    calm ? hide() : setTimeout(hide, 1000);
+  }
+
+  seal.addEventListener('click', open);
+}
+
 /* ---------- музыка ---------- */
 
 function initMusic() {
@@ -211,6 +245,8 @@ function initMusic() {
     if (stoppedByUser || !audio.paused) return;
     audio.play().then(markOn).catch(() => {});
   }
+
+  startMusic = tryAutoplay;
 
   function onFirstGesture(e) {
     events.forEach(type => window.removeEventListener(type, onFirstGesture));
@@ -539,6 +575,7 @@ fillStatic();
 startCountdown();
 buildCalendar();
 initMusic();
+initEnvelope();
 initPhotos();
 initReveal();
 initScrollFx();

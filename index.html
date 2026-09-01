@@ -12,14 +12,66 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Marck+Script&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/bench.jpg">
 <link rel="stylesheet" href="img/lqip.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<!-- ======================= КОНВЕРТ ======================= -->
+<div class="env" id="env">
+  <span class="env__flap env__flap--top" aria-hidden="true"></span>
+  <span class="env__flap env__flap--bottom" aria-hidden="true"></span>
+
+  <div class="env__head">
+    <p class="env__kicker">Үйлөнүү тойго</p>
+    <p class="env__script">Чакыруу</p>
+  </div>
+
+  <button class="seal" id="sealBtn" type="button" aria-label="Чакырууну ачуу">
+    <span class="seal__wax" aria-hidden="true"></span>
+    <span class="seal__disc">БАСЫҢЫЗ</span>
+  </button>
+
+  <div class="crest" aria-hidden="true">
+    <svg viewBox="0 0 200 240">
+      <defs>
+        <linearGradient id="crestLine" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F2DCC0"/>
+          <stop offset="100%" stop-color="#C79E6B"/>
+        </linearGradient>
+      </defs>
+      <g fill="none" stroke="url(#crestLine)" stroke-width="1.6" stroke-linecap="round">
+        <!-- корона -->
+        <path d="M78 34 L84 18 L92 30 L100 12 L108 30 L116 18 L122 34 Z"/>
+        <circle cx="100" cy="8" r="3"/>
+        <circle cx="84" cy="14" r="2.4"/>
+        <circle cx="116" cy="14" r="2.4"/>
+        <!-- щит -->
+        <path d="M46 52 H154 V132 C154 176 128 200 100 214 C72 200 46 176 46 132 Z"/>
+        <path d="M53 59 H147 V131 C147 171 124 193 100 205 C76 193 53 171 53 131 Z" stroke-width="0.9" opacity="0.55"/>
+        <!-- веточки -->
+        <path d="M46 92 C24 104 20 140 34 168 C42 184 56 196 70 204"/>
+        <path d="M154 92 C176 104 180 140 166 168 C158 184 144 196 130 204"/>
+        <g stroke-width="1.1" opacity="0.85">
+          <path d="M31 116 C22 112 18 118 20 124"/><path d="M31 116 C30 108 36 104 41 106"/>
+          <path d="M28 142 C19 140 16 147 19 152"/><path d="M28 142 C28 134 34 131 39 134"/>
+          <path d="M38 168 C30 168 27 175 31 180"/><path d="M38 168 C39 160 46 158 50 161"/>
+          <path d="M169 116 C178 112 182 118 180 124"/><path d="M169 116 C170 108 164 104 159 106"/>
+          <path d="M172 142 C181 140 184 147 181 152"/><path d="M172 142 C172 134 166 131 161 134"/>
+          <path d="M162 168 C170 168 173 175 169 180"/><path d="M162 168 C161 160 154 158 150 161"/>
+        </g>
+      </g>
+      <text class="crest__initials" x="74" y="122" text-anchor="middle" id="crestGroom">Э</text>
+      <text class="crest__amp" x="100" y="146" text-anchor="middle">&amp;</text>
+      <text class="crest__initials" x="126" y="172" text-anchor="middle" id="crestBride">К</text>
+    </svg>
+  </div>
+</div>
+
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
+<div class="frame" aria-hidden="true"></div>
 
 <div class="aurora" aria-hidden="true">
   <span class="aurora__blob aurora__blob--violet"></span>
