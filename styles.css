@@ -383,10 +383,13 @@ body.is-sealed { overflow: hidden; }
 
 .hero__ph::before { display: none; }
 
+/* лёгкая расфокусировка: имена поверх читаются мягче.
+   scale в kenburns с запасом, поэтому размытые края за кадр не вылезают */
 .hero__ph img {
   top: 0;
   height: 100%;
   object-position: center 22%;
+  filter: blur(2px);
   animation: kenburns 34s ease-in-out infinite alternate;
 }
 
