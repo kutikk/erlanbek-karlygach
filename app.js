@@ -18,16 +18,7 @@ const CONFIG = {
   // URL веб-приложения Google Apps Script (см. README, шаг 4)
   rsvpUrl: 'https://script.google.com/macros/s/AKfycbzTcR-BoSdXlfsXId2vo0qKbmLWSl9LqXXddliXei8jiIPLQBzLKwEqTTopJm2z8WbL/exec',
 
-  maxGuests: 10,
-
-  // Программа дня. Впишите своё время; пустой массив — блок не показывается.
-  schedule: [
-    { time: '17:00', what: 'Конокторду тосуу',  note: 'Салттуу коктейль жана сүрөткө түшүү' },
-    { time: '18:00', what: 'Тойдун ачылышы',    note: 'Жаштарды куттуктоо' },
-    { time: '19:00', what: 'Кечки тамак' },
-    { time: '21:00', what: 'Бий жана оюн-зоок' },
-    { time: '23:00', what: 'Тойдун жыйынтыгы' }
-  ]
+  maxGuests: 10
 };
 
 const TEXT = {
@@ -94,45 +85,6 @@ function fillStatic() {
     sideBtns[0].textContent = CONFIG.groom;
     sideBtns[1].textContent = CONFIG.bride;
   }
-
-  // монограмма в подвале: первые буквы имён
-  $('monoText').textContent = `${CONFIG.groom.charAt(0)} · ${CONFIG.bride.charAt(0)}`;
-}
-
-/* ---------- программа дня ---------- */
-
-function buildSchedule() {
-  const rows = Array.isArray(CONFIG.schedule) ? CONFIG.schedule : [];
-  if (!rows.length) return;
-
-  const box = $('plan');
-  const frag = document.createDocumentFragment();
-
-  rows.forEach(item => {
-    const row = document.createElement('div');
-    row.className = 'plan__row';
-
-    const time = document.createElement('span');
-    time.className = 'plan__time';
-    time.textContent = item.time || '';
-
-    const what = document.createElement('span');
-    what.className = 'plan__what';
-    what.textContent = item.what || '';
-
-    if (item.note) {
-      const note = document.createElement('span');
-      note.className = 'plan__note';
-      note.textContent = item.note;
-      what.appendChild(note);
-    }
-
-    row.append(time, what);
-    frag.appendChild(row);
-  });
-
-  box.appendChild(frag);
-  $('planSection').hidden = false;
 }
 
 /* ---------- обратный отсчёт ---------- */
@@ -586,7 +538,6 @@ function initForm() {
 fillStatic();
 startCountdown();
 buildCalendar();
-buildSchedule();
 initMusic();
 initPhotos();
 initReveal();
